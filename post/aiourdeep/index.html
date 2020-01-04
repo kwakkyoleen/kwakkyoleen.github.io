@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<title>AI_모두를위한딥러닝_1 | My New Hugo Site</title>
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.62.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="http://example.org/post/aiourdeep/">
+<link rel="alternate" type="application/rss+xml" href="" title="My New Hugo Site">
+<link rel="stylesheet" href="http://example.org/css/theme.css">
+<link rel="stylesheet" href="http://example.org/css/classes.css">
+
+<header class="dark">
+  <h2><a href="http://example.org/">My New Hugo Site</a></h2>
+  <nav>
+    
+  </nav>
+  <script type="text/javascript" async 
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</header>
+
+<article>
+  <header>
+    <h1>AI_모두를위한딥러닝_1</h1>
+    <p><time datetime="2020-01-01T23:20:11&#43;09:00">January 01, 2020</time></p>
+  </header>
+  <h1 id="---1">모두를 위한 딥러닝 1강</h1>
+<h2 id="1-----">1. 기본적인 머신러닝 용어와 개념 설명</h2>
+<h3 id="heading">머신러닝</h3>
+<ul>
+<li>explict program 의 제한을 벗어난 프로그램. 개발자가 정해준 일정한 로직을 따르지 않고 학습한 내용을 토대로 움직이는 프로그램.</li>
+</ul>
+<h3 id="-">머신러닝의 종류</h3>
+<ul>
+<li>supervised learning : training set(레이블들이 정해져 있는 데이터)을 가지고 학습을 하는 방법 - 예시) 개와 고양이를 구분하는 프로그램, 개와 고양이로 레이블이 구분된 자료로 학습</li>
+<li>unsupervied learning : un-labeled data(데이터가 레이블이 주어지지 않은 경우)를 보고 유사한것들을 구분하여 학습하는 방법 - 예시) 구글 뉴스의 그룹화</li>
+<li>이번 강의에서는 supervised learning을 중점으로 볼것임</li>
+</ul>
+<h3 id="ml---">ML에서의 일반적이 문제 유형</h3>
+<ul>
+<li>레이블링된 이미지를 보고 학습</li>
+<li>스펨메일로 구분된, 또는 구분되지 않은 메일을 보고 학습</li>
+<li>시험 준비 시간과 시험 점수가 주어진 데이터를 보고 학습</li>
+</ul>
+<h3 id="training-data-set">training data set</h3>
+<ul>
+<li>답이라고 할 수 있는 Y값과 특징이라고 할 수 있는 X를 가지고 있는 레이블화된 데이터.</li>
+<li>이 데이터를 통해 학습한 모델이 생성</li>
+<li>모델에 임의의 textX를 넣어주었을 때 예측된 값 Y를 출력</li>
+<li>따라서 trainging data set은 반드시 필요하다</li>
+</ul>
+<h3 id="supervised-learning-">supervised learning의 타입</h3>
+<ul>
+<li>regression : 특정한 법위에서 값을 예측 - 예시) 공부 시간에 따른 점수 예측 (0 ~ 100 사이의 값 예측)</li>
+</ul>
+<p>data set 예시</p>
+<table>
+<thead>
+<tr>
+<th align="center">X(시간)</th>
+<th align="center">Y(점수)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">10</td>
+<td align="center">90</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">80</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">50</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">30</td>
+</tr>
+</tbody>
+</table>
+<p>위 데이터 셋을 기반으로 학습하여 학습 시간(X)을 넣으면 점수를 예측</p>
+<ul>
+<li>binary classfication(이진 분류) : True or False 두가지로 구분 - 예시) 공부 시간에 따른 pass or non-pass예측</li>
+</ul>
+<p>data set 예시</p>
+<table>
+<thead>
+<tr>
+<th align="center">X(시간)</th>
+<th align="center">Y(P/F)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">10</td>
+<td align="center">P</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">P</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+<p>위 데이터 셋을 기반으로 학습하여 학습 시간(X)을 넣으면 P/F 예측</p>
+<ul>
+<li>multi-label classification : 여러가지 경우로 구분 - 예시) 공부 시간에 따른 등급예측</li>
+</ul>
+<p>data set 예시</p>
+<table>
+<thead>
+<tr>
+<th align="center">X(시간)</th>
+<th align="center">Y(등급)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">10</td>
+<td align="center">A</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">B</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">D</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+<p>위 데이터 셋을 기반으로 학습하여 학습 시간(X)을 넣으면 등급 예측</p>
+<h2 id="1-l-tenserflow-">1-L. TenserFlow의 기본</h2>
+<h3 id="tenserflow--">TenserFlow에대한 간략한 설명</h3>
+<ul>
+<li>머신러닝을 위해 구글에서 만든 오픈소스 라이브러리</li>
+<li>머신러닝을 위한 라이브러리로 텐서플로우를 가장 많이 씀 -&gt; 공부하기 쉽고 미리 만들어진 소스코드가 풍부함</li>
+<li>data flow graphs를 이용해서 numerical한 계산을 할 수 있음</li>
+</ul>
+<h3 id="data-flow-graph-">Data flow graph가 무엇인가?</h3>
+<ul>
+<li>그래프 : 노드와 노드간을 연결하는 엣지</li>
+<li>노드(operation)들이 엣지(데이터)의 배열(temsors)을 받아 계산을 하는 흐름에서 어떤 연산이 일어나 원하는 결과물을 얻거나 어떤 작업을 하는 것.</li>
+</ul>
+<h3 id="tenser-flow-">Tenser flow 설치하기</h3>
+<ul>
+<li>pip instal &ndash;upgrade tensorflow 로 설치 가능</li>
+<li>gpu가 있다면 pip install &ndash;upgrade tensorflow-gpu</li>
+<li>설치 후 import tensorflow as tf 로 tensorflow import</li>
+<li>tf.<strong>version</strong> 실행. 설치 되었는지 확인</li>
+</ul>
+<h3 id="tensorflow-hello-world">TensorFlow Hello World!</h3>
+<p>다음을 실행</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+
+hello <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">hello, tensorflow!</span><span style="color:#e6db74">&#34;</span>)
+
+sess <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Session()
+
+<span style="color:#66d9ef">print</span>(sess<span style="color:#f92672">.</span>run(hello))
+
+</code></pre></div><p>기존 tensorflow에서는 constant라는 노드를 만들고 Session을 생성시킨 다음 session에 노드를 집어넣어 run 시킴으로써 계산을 진행하였다.</p>
+<p>하지만 tensorflow 2.0 버전에선 Session이 사라지고 즉시 실행으로 바뀌었기 때문에 이 코드로는 출력이 불가능 하다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+
+hello <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">hello, tensorflow!</span><span style="color:#e6db74">&#34;</span>)
+
+<span style="color:#66d9ef">print</span>(hello<span style="color:#f92672">.</span>numpy())
+
+</code></pre></div><p>대신 hello 라는 오퍼레이터를 numpy 속성으로 변환시켜 출력하였다.</p>
+<pre><code>b'hello, tensorflow!' 
+</code></pre><p>라는 출력이 나왔다. 여기에서 b는 Byte literals를 뜻한다.</p>
+<p>노드를 추가한 조금 더 복잡한 코드를 실행시켜보았다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+
+node1 <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(<span style="color:#ae81ff">3.0</span>,tf<span style="color:#f92672">.</span>float32)
+node2 <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(<span style="color:#ae81ff">4.0</span>)
+node3 <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>add(node1, node2)
+
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">node1:</span><span style="color:#e6db74">&#34;</span>,node1,<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">node2</span><span style="color:#e6db74">&#34;</span>,node2)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">node3:</span><span style="color:#e6db74">&#34;</span>,node3)
+
+sess <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Session()
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">sess.run(node1,node2): </span><span style="color:#e6db74">&#34;</span>,sess<span style="color:#f92672">.</span>run([node1, node2]))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">sess.run(node3): </span><span style="color:#e6db74">&#34;</span>, sess<span style="color:#f92672">.</span>run(node3))
+
+</code></pre></div><p>하지만 마찬가지의 이유로 실행이 되지 않기에 위와같은 방법으로 코드를 수정해 실행하였다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+
+node1 <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(<span style="color:#ae81ff">3.0</span>,tf<span style="color:#f92672">.</span>float32) <span style="color:#75715e">#node1을 만들고</span>
+node2 <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(<span style="color:#ae81ff">4.0</span>) <span style="color:#75715e">#node2 도 만든다</span>
+node3 <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>add(node1, node2) <span style="color:#75715e">#더하기 노드를 만들고 node1과 node2를 연결한다</span>
+
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">node1:</span><span style="color:#e6db74">&#34;</span>,node1,<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">node2</span><span style="color:#e6db74">&#34;</span>,node2)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">node3:</span><span style="color:#e6db74">&#34;</span>,node3)
+
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[node1.numpy(), node2.numpy()]: </span><span style="color:#e6db74">&#34;</span>,[node1<span style="color:#f92672">.</span>numpy(),node2<span style="color:#f92672">.</span>numpy()])
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">node3.numpy(): </span><span style="color:#e6db74">&#34;</span>,node3<span style="color:#f92672">.</span>numpy())
+</code></pre></div><p>출력은 다음과 같다</p>
+<pre><code>2020-01-02 03:02:25.929147: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+node1: tf.Tensor(3.0, shape=(), dtype=float32) node2 tf.Tensor(4.0, shape=(), dtype=float32)
+node3: tf.Tensor(7.0, shape=(), dtype=float32)
+[node1.numpy(), node2.numpy()]:  [3.0, 4.0]
+node3.numpy():  7.0
+</code></pre><p>기존의 tensorflow와 달리 Session을 거치지 않고 바로 실행되는 모습을 볼 수 있다.</p>
+<h3 id="placehold">placehold</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">a <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>placeholder(tf<span style="color:#f92672">.</span>float32)
+b <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>placeholder(tf<span style="color:#f92672">.</span>float32)
+adder_node <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> b
+
+<span style="color:#66d9ef">print</span>(sess<span style="color:#f92672">.</span>run(adder_node, feed_dict<span style="color:#f92672">=</span>{a: <span style="color:#ae81ff">3</span>, b: <span style="color:#ae81ff">4.5</span>}))
+<span style="color:#66d9ef">print</span>(sess<span style="color:#f92672">.</span>run(adder_node, feed_dict<span style="color:#f92672">=</span>{a: [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>], b: [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>]}))
+</code></pre></div><p>결과</p>
+<pre><code>7.5
+[3.  7.]
+</code></pre><p>placeholder를 사용하면 sess로 계산을 진행하는 단계에서 feed_dict로 값을 지정해줄 수 있다. 다만 tensorflow 2.0에서는 Session이 사라졌기 때문에 위와 같은 코드는 불가능 하다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a6e22e">@tf.function</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">addfun</span>(a, b):
+    <span style="color:#66d9ef">return</span> a<span style="color:#f92672">+</span>b
+
+adder_node <span style="color:#f92672">=</span> addfun(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4.5</span>)
+
+<span style="color:#66d9ef">print</span>(adder_node)
+</code></pre></div><p>대신 funtion데코레이션이 추가되어 비슷하게 사용할 수 있다.</p>
+<h3 id="-rank-shapes-type">텐서의 rank, shapes, type</h3>
+<ul>
+<li>Rank</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">rank</th>
+<th align="center">math entity</th>
+<th align="center">파이썬 예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0</td>
+<td align="center">Scalar (magnitude only) [스-칼라]</td>
+<td align="center">s = 483</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">Vector (magnitude and direction) [벡-터]</td>
+<td align="center">v = [1.1, 2.2, 3.3]</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">Matrix (table of number) [행렬]</td>
+<td align="center">m = [[1, 2, 3],[4, 5, 6] , [7, 8 ,9]]</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">3-Tensor (cube of number) [3-텐서]</td>
+<td align="center">t = [[[2],[3],[4]],[[5],[6],[7]]]</td>
+</tr>
+<tr>
+<td align="center">n</td>
+<td align="center">n-Tensor [엔-텐서]</td>
+<td align="center">&hellip;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Shape</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">rank</th>
+<th align="center">shape</th>
+<th align="center">차원</th>
+<th align="center">예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0</td>
+<td align="center">[]</td>
+<td align="center">0-D</td>
+<td align="center">A 0-D tensor.A scalar.</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">[D0]</td>
+<td align="center">1-D</td>
+<td align="center">A 1-D tensor with shape[5]</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">[D0, D1]</td>
+<td align="center">2-D</td>
+<td align="center">A 2-D tensor with shape[3, 4]</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">[D0, D1, D2]</td>
+<td align="center">3-D</td>
+<td align="center">A 3-D tensor with shape[1, 4, 3]</td>
+</tr>
+<tr>
+<td align="center">n</td>
+<td align="center">[D0, D1, &hellip;Dn-1]</td>
+<td align="center">n-D</td>
+<td align="center">A 1-D tensor with shape[D0, D1,&hellip;Dn-1]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Data type</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">데이터 타입</th>
+<th align="center">파이썬 타입</th>
+<th align="center">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">DT_FLOAT</td>
+<td align="center">tf.float32</td>
+<td align="center">32비트 실수</td>
+</tr>
+<tr>
+<td align="center">DT_DOUBLE</td>
+<td align="center">tf.float64</td>
+<td align="center">64비트 실수</td>
+</tr>
+<tr>
+<td align="center">DT_INT8</td>
+<td align="center">tf.int8</td>
+<td align="center">8비트 signed정수</td>
+</tr>
+<tr>
+<td align="center">DT_INT16</td>
+<td align="center">tf.int16</td>
+<td align="center">16비트 signed정수</td>
+</tr>
+<tr>
+<td align="center">DT_INT32</td>
+<td align="center">tf.int32</td>
+<td align="center">32비트 signed정수</td>
+</tr>
+<tr>
+<td align="center">DT_INT64</td>
+<td align="center">tf.int64</td>
+<td align="center">64비트 signed정수</td>
+</tr>
+<tr>
+<td align="center">&hellip;</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="--">텐서플로우의 동작 원리</h3>
+<p><img src="/TensorflowMechanics.PNG" alt="TensorflowMechanics"></p>
+<ol start="0">
+<li>텐서플로우 operation을 사용하는 그래프를 만든다.</li>
+<li>데이터를 넣고 그래프를 실행시킨다.</li>
+<li>그래프 안의 변수들을 업데이트 시킨다.(그리고 값을 반환한다.)</li>
+</ol>
+<h2 id="2-linear-regression--">2. Linear Regression (선형 회귀)</h2>
+<p>앤드류 교수님 수업이랑 겹치는 부분이 많다.</p>
+<h3 id="----regression">시험 점수 예측 : regression</h3>
+<p>data set 예시</p>
+<table>
+<thead>
+<tr>
+<th align="center">X(시간)</th>
+<th align="center">Y(점수)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">10</td>
+<td align="center">90</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">80</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">50</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">30</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>100~0 사이의 범위에서 예측(regression)</li>
+<li>트레이닝 : (트레이닝)데이터를 가지고 훈련하는 것 -&gt; regression 모델 생성</li>
+</ul>
+<h3 id="--1">간단한 예시</h3>
+<p>(트레이닝 데이터)</p>
+<table>
+<thead>
+<tr>
+<th align="center">X</th>
+<th align="center">Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">3</td>
+</tr>
+</tbody>
+</table>
+<p>트레이닝 데이터를 간단하게 나타낸 그래프</p>
+<p><img src="/regressionexamplegraph.PNG" alt="회귀그래프"></p>
+<ul>
+<li>X : 예측을 하기 위한 기본적인 자료 (특징)</li>
+<li>Linear regression : 선형적인 모델이 데이터에 맞을거라 가설을 세우고 선을 만들어 예측하는 방법 - 예시) 공부량과 성적, 집 크기와 가격 등등</li>
+<li>H(x) = Wx + b -&gt; 가장 적절한 W와 b 값을 찾아냄 (Hypothesis)</li>
+</ul>
+<h3 id="cost-function-loss-function">Cost function (Loss function)</h3>
+<p><img src="/regression2.PNG" alt="회귀그래프2"></p>
+<ul>
+<li>실제 데이터와 예측하여 만든 선과의 거리를 비교하여 얼마나 가설이 적절한가 판단</li>
+<li>\( H(x)-y \) -&gt; 좋은 모델은 아님 (차이가 음수일 수 도 있음)</li>
+<li>\( (H(x)-y)^{2} \) -&gt; 차이가 양수로 나타남 -&gt; cost function</li>
+<li>일반화 모델 : \(cost(W,b)=\frac{1}{m}\sum_{i=1}^{m}(H(x^{(i)})-y^{(i)})^{2}\) (m : 데이터 갯수)</li>
+<li>최종 목적 : \(minimize_{(W, b)} cost(W,b)\) -&gt; cost를 작게 만드는 것</li>
+</ul>
+<h2 id="2-l-tensorflow-linear-regression-">2-L. TensorFlow로 Linear Regression 구현</h2>
+<h3 id="operation--">operation으로 그래프 만들기</h3>
+<p>\(H(x)=Wx+b\) 의 경우</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x_train <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+y_train <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+varia <span style="color:#f92672">=</span> [W, b]
+
+W <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(tf<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(shape<span style="color:#f92672">=</span>[<span style="color:#ae81ff">1</span>]),name <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">weight</span><span style="color:#e6db74">&#39;</span>) <span style="color:#75715e"># variable : 학습하며 변경 가능한 tf 타입</span>
+b <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(tf<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(shape<span style="color:#f92672">=</span>[<span style="color:#ae81ff">1</span>]), name <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">bias</span><span style="color:#e6db74">&#39;</span>)
+
+hypothesis <span style="color:#f92672">=</span> x_train <span style="color:#f92672">*</span> W <span style="color:#f92672">+</span> b
+</code></pre></div><p>\(cost(W,b)=\frac{1}{m}\sum_{i=1}^{m}(H(x^{(i)})-y^{(i)})^{2}\) 의 경우</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cost <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>reduce_mean(tf<span style="color:#f92672">.</span>square(hypothesis <span style="color:#f92672">-</span> y_train)) <span style="color:#75715e"># reduce_mean : 평균을 내주는 함수</span>
+</code></pre></div><p>GradientDescent</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">optimizer <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>SGD(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.01</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hyp</span>(x_,w_,b_): <span style="color:#75715e"># 현재 hypothesis(W, b) 를 구해주는 함수</span>
+    <span style="color:#66d9ef">return</span> x_<span style="color:#f92672">*</span>w_<span style="color:#f92672">+</span>b_
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">loss</span>(pre_y, des_y): <span style="color:#75715e">#현재 cost를 구해주는 함수</span>
+    <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>reduce_mean(tf<span style="color:#f92672">.</span>square(pre_y <span style="color:#f92672">-</span> des_y))
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10000</span>):
+    <span style="color:#66d9ef">with</span> tf<span style="color:#f92672">.</span>GradientTape() <span style="color:#66d9ef">as</span> t: <span style="color:#75715e">#cost를 줄이며 경사를 하강시키는 부분</span>
+        current_loss <span style="color:#f92672">=</span> loss(hyp(x_train,W,b),y_train)   
+    grads <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>gradient(current_loss,varia)
+    optimizer<span style="color:#f92672">.</span>apply_gradients(zip(grads, varia))
+</code></pre></div><p>Tensorflow 2.0에서는 즉시 실행이 기본이기때문에 그래프를 반복해서 실행시키는 대신 for문을 사용하여 학습을 시킨다.</p>
+<p>실행 결과는</p>
+<pre><code>W =  [0.99999785] , b =  [4.350787e-06]
+</code></pre><p>학습이 매우 잘된 모습을 볼 수 있다.</p>
+<h2 id="3-cost-">3. cost의 최소화</h2>
+<p>cost를 줄이는 방법을 알고 linear regression을 완성시켜보자</p>
+<h3 id="hypothesis-cost-">hypothesis와 cost함수 다시보기</h3>
+<p>\(H(x)=Wx+b\)</p>
+<p>\(cost(W,b)=\frac{1}{m}\sum_{i=1}^{m}(H(x^{(i)})-y^{(i)})^{2}\)</p>
+<p>b = 0인 버전 : \(cost(W,b)=\frac{1}{m}\sum_{i=1}^{m}(Wx^{(i)}-y^{(i)})^{2}\)</p>
+<h3 id="cost--">cost 함수란 무엇일까?</h3>
+<p>트레이닝 데이터</p>
+<table>
+<thead>
+<tr>
+<th align="center">X</th>
+<th align="center">Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>W = 1, cost = \(\frac{1}{m}((1\times 1-1)^{2}+(1\times 2-2)^{2}+(1\times 3-3)^{2})=0\)</li>
+<li>W = 0, cost = \(\frac{1}{m}((0\times 1-1)^{2}+(0\times 2-2)^{2}+(0\times 3-3)^{2})=4.67\)</li>
+<li>W = 2, cost = 4.67</li>
+</ul>
+<p>W값의 변화에 따른 cost그래프
+<img src="/costgraph.PNG" alt="costg"></p>
+<ul>
+<li>목표 : cost가 최소가 되는 W를 찾는 것</li>
+</ul>
+<h3 id="gradient-descent-algorithm---">Gradient descent algorithm (경사 하강 알고리즘)</h3>
+<ul>
+<li>cost를 최소화 하는 함수</li>
+<li>많은 최소화 문제에 사용됨</li>
+<li>cost(W, b)가 주어졌을 때 cost를 최소화 하는 W, b를 찾음</li>
+<li>더 일반적인 함수에도 적용 가능</li>
+</ul>
+<h3 id="----">경사 하강 알고리즘의 동작 방식</h3>
+<ul>
+<li>경사가 있는 방향으로 내려감 -&gt; 언젠가는 바닥에 도착</li>
+<li>cost 함수에 미분을 적용
+<ul>
+<li>변형된 cost 함수 : \(cost(W,b)=\frac{1}{2m}\sum_{i=1}^{m}(Wx^{(i)}-y^{(i)})^{2}\)</li>
+<li>정리 전 :\(W:=W-\alpha \frac{\partial }{\partial W}cost(W)\) - (\(\alpha \) = running rate)</li>
+<li>정리 후 : \(W:=W-\alpha \frac{1}{m}\sum_{i=1}^{m}(Wx^{(i)}-y^{(i)})x^{(i)}\)</li>
+</ul>
+</li>
+</ul>
+<h3 id="convex-function">Convex function</h3>
+<p><img src="/convex.PNG" alt="convex"></p>
+<p>위 그림과 같이 시작점이 어디냐에 따라서 도착점이 달라 질 수가 있음</p>
+<p><img src="/convex2.PNG" alt="convex2"></p>
+<p>하지만 우리가 사용하는 cost함수는 위 그림과 같은 그릇 모양의 Convex function이라 어느 위치에서 시작하든지 항상 바닥에 도착하게 된다. 즉 cost함수를 설계할 때 그 함수가 Convex함수인지 꼭 확인해야 한다.</p>
+<h2 id="3-l-cost--tensorflow-">3-L. cost 최소화의 Tensorflow 구현</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+
+x_train <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+y_train <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+
+W_val <span style="color:#f92672">=</span> []
+cost_val <span style="color:#f92672">=</span> []
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hyp</span>(x_,w_):
+    <span style="color:#66d9ef">return</span> x_<span style="color:#f92672">*</span>w_
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cost</span>(pre_y, des_y):
+    <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>reduce_mean(tf<span style="color:#f92672">.</span>square(pre_y <span style="color:#f92672">-</span> des_y))
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#f92672">-</span><span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">50</span>):
+    W <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(i<span style="color:#f92672">*</span><span style="color:#ae81ff">0.1</span>)
+    curr_hyp <span style="color:#f92672">=</span> hyp(x_train,W)
+    curr_W <span style="color:#f92672">=</span> W<span style="color:#f92672">.</span>numpy()
+    curr_cost <span style="color:#f92672">=</span> cost(curr_hyp,y_train)<span style="color:#f92672">.</span>numpy()
+    W_val<span style="color:#f92672">.</span>append(curr_W)
+    cost_val<span style="color:#f92672">.</span>append(curr_cost)
+    
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">W = </span><span style="color:#e6db74">&#34;</span>,W_val,<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">, cost = </span><span style="color:#e6db74">&#34;</span>,cost_val)
+
+plt<span style="color:#f92672">.</span>plot(W_val,cost_val)
+plt<span style="color:#f92672">.</span>show()
+</code></pre></div><p>W 값 변화에 따른 cost 변화를 보기 위해 위와 같은 코드를 작성했다.</p>
+<p><img src="/wcost.PNG" alt="wcost"></p>
+<p>위 그래프는 앞의 코드의 출력이며 가로축은 W, 세로축은 cost를 나타낸다.</p>
+<h3 id="--2">그래프 분석</h3>
+<ul>
+<li>W가 1 이상일 때
+<ul>
+<li>기울기는 양수</li>
+<li>W는 작아져야 함</li>
+</ul>
+</li>
+<li>W가 1 이하일 때
+<ul>
+<li>기울기는 음수</li>
+<li>W는 커져야 함</li>
+</ul>
+</li>
+<li>따라서 산술적 계산을 적용하면 W에 기울기를 정리한 값을 빼주면 올바른 결과가 나온다는 결론이 나온다.
+<ul>
+<li>\(W:=W-\alpha \frac{1}{m}\sum_{i=1}^{m}(Wx^{(i)}-y^{(i)})x^{(i)}\)</li>
+</ul>
+</li>
+</ul>
+<p>이를 Tensorflow 코드에 적용하면</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learning_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>
+gradient <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>reduce_mean((W<span style="color:#f92672">*</span>X<span style="color:#f92672">-</span>Y)<span style="color:#f92672">*</span>X)
+W <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>subtract(W, learning_rate<span style="color:#f92672">*</span>gradient)
+</code></pre></div><p>그리고 이 내용을 앞선 코드에 적용하여 코드를 다시 짜보면</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+
+x_train <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+y_train <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+
+W <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(tf<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(shape<span style="color:#f92672">=</span>[<span style="color:#ae81ff">1</span>]),name <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">weight</span><span style="color:#e6db74">&#39;</span>)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hyp</span>(x_,w_):
+    <span style="color:#66d9ef">return</span> x_<span style="color:#f92672">*</span>w_
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cost</span>(pre_y, des_y):
+    <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>reduce_sum(tf<span style="color:#f92672">.</span>square(pre_y <span style="color:#f92672">-</span> des_y))
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">25</span>):
+    learning_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>
+    gradient <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>reduce_mean((W<span style="color:#f92672">*</span>x_train<span style="color:#f92672">-</span>y_train)<span style="color:#f92672">*</span>x_train)
+    W <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>subtract(W, learning_rate<span style="color:#f92672">*</span>gradient)
+    <span style="color:#66d9ef">print</span>(cost(hyp(x_train,W),y_train)<span style="color:#f92672">.</span>numpy(),W<span style="color:#f92672">.</span>numpy())
+</code></pre></div><p>출력</p>
+<pre><code># cost          W
+0.53011817 [0.8054092]
+0.15078919 [0.89621824]
+0.04289107 [0.94464976]
+0.012200174 [0.97047985]
+0.0034702579 [0.9842559]
+0.0009871025 [0.99160314]
+0.00028077362 [0.99552166]
+7.986753e-05 [0.9976115]
+2.2718443e-05 [0.9987261]
+6.4611954e-06 [0.9993206]
+1.8379001e-06 [0.99963766]
+5.2291256e-07 [0.99980676]
+1.4872565e-07 [0.99989694]
+4.2320792e-08 [0.99994504]
+1.2039777e-08 [0.9999707]
+3.4030592e-09 [0.9999844]
+9.748646e-10 [0.99999166]
+2.7818103e-10 [0.9999955]
+7.9580786e-11 [0.9999976]
+2.2385649e-11 [0.99999875]
+5.7873706e-12 [0.99999934]
+1.5489832e-12 [0.99999964]
+3.872458e-13 [0.9999998]
+2.9842795e-13 [0.9999999]
+7.460699e-14 [0.99999994]
+</code></pre><p>W가 점점 특정 값에 가까워짐에 따라 cost가 0에 수렴함을 알 수 있다.</p>
+<p>물론 이 코드를 매 실행마다 쓸 수는 없기에 Tensorflow에서는 다음과 같은 코드를 제공한다</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">varia <span style="color:#f92672">=</span> [W, b]
+
+<span style="color:#75715e"># ...</span>
+
+optimizer <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>SGD(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.01</span>) <span style="color:#75715e"># 학습 방법과 학습률을 정하고</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hyp</span>(x_,w_,b_):
+    <span style="color:#66d9ef">return</span> x_<span style="color:#f92672">*</span>w_<span style="color:#f92672">+</span>b_
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cost</span>(pre_y, des_y):
+    <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>reduce_mean(tf<span style="color:#f92672">.</span>square(pre_y <span style="color:#f92672">-</span> des_y))
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10000</span>):
+    <span style="color:#66d9ef">with</span> tf<span style="color:#f92672">.</span>GradientTape() <span style="color:#66d9ef">as</span> t:
+        current_cost <span style="color:#f92672">=</span> cost(hyp(x_train,W,b),y_train) <span style="color:#75715e"># 현재 cost를 정의한 뒤</span>
+    grads <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>gradient(current_cost,varia) <span style="color:#75715e"># 기울기를 알아내고</span>
+    optimizer<span style="color:#f92672">.</span>apply_gradients(zip(grads, varia)) <span style="color:#75715e"># 기울기와 학습률을 적용시켜 변수를 수정한다.</span>
+
+</code></pre></div><p>이 코드를 적용시켜 weight를 5로하여 코드를 수정하면</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x_train <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+y_train <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+
+W <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(<span style="color:#ae81ff">5.0</span> ,name <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">weight</span><span style="color:#e6db74">&#39;</span>)
+varia <span style="color:#f92672">=</span> [W]
+
+optimizer <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>SGD(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.02</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hyp</span>(x_,w_):
+    <span style="color:#66d9ef">return</span> x_<span style="color:#f92672">*</span>w_
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cost</span>(pre_y, des_y):
+    <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>reduce_sum(tf<span style="color:#f92672">.</span>square(pre_y <span style="color:#f92672">-</span> des_y))
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
+    <span style="color:#66d9ef">with</span> tf<span style="color:#f92672">.</span>GradientTape() <span style="color:#66d9ef">as</span> t:
+        current_cost <span style="color:#f92672">=</span> cost(hyp(x_train,W),y_train)   
+    grads <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>gradient(current_cost,varia)
+    optimizer<span style="color:#f92672">.</span>apply_gradients(zip(grads, varia))
+    <span style="color:#66d9ef">print</span>(cost(hyp(x_train,W),y_train)<span style="color:#f92672">.</span>numpy(),W<span style="color:#f92672">.</span>numpy())
+</code></pre></div><p>결과</p>
+<pre><code># cost       W
+43.366398 2.76
+8.395736 1.7744
+1.6254148 1.340736
+0.31468004 1.1499238
+0.060922034 1.0659665
+0.011794565 1.0290253
+0.0022834246 1.0127711
+0.0004420695 1.0056193
+8.5588734e-05 1.0024725
+1.6569491e-05 1.0010879
+</code></pre><p>잘나온다.</p>
+<h2 id="4-multivariable-linear-regression----">4. Multivariable linear regression (변수가 여러개인 선형 회귀)</h2>
+<ul>
+<li>필요성 : input이 여러개인 경우</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">X1(quiz 1)</th>
+<th align="center">X2(quiz 2)</th>
+<th align="center">X3(midterm)</th>
+<th align="center">Y(final)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">73</td>
+<td align="center">80</td>
+<td align="center">75</td>
+<td align="center">152</td>
+</tr>
+<tr>
+<td align="center">93</td>
+<td align="center">88</td>
+<td align="center">93</td>
+<td align="center">185</td>
+</tr>
+<tr>
+<td align="center">89</td>
+<td align="center">91</td>
+<td align="center">90</td>
+<td align="center">180</td>
+</tr>
+<tr>
+<td align="center">96</td>
+<td align="center">98</td>
+<td align="center">100</td>
+<td align="center">196</td>
+</tr>
+<tr>
+<td align="center">73</td>
+<td align="center">66</td>
+<td align="center">70</td>
+<td align="center">142</td>
+</tr>
+</tbody>
+</table>
+<p>예시)  퀴즈, 중간고사 점수를 입력으로 기말고사 점수 예측</p>
+<h3 id="hypothesis">Hypothesis</h3>
+<ul>
+<li>\(H(x)=Wx+b\)</li>
+<li>\(H(x_{1},x_{2},x_{3})=w_{1}x_{1}+w_{2}x_{2}+w_{3}x_{3}+b\)</li>
+</ul>
+<h3 id="heading-1">행렬표시</h3>
+<ul>
+<li>\(H(X)=WX\)</li>
+<li>shape : [n,m]*[m,k] = [n,k]</li>
+</ul>
+<h2 id="4-l-multi-variable---tensorflow-">4-L. multi-variable 선형 회귀를 Tensorflow에서 구현</h2>
+<h3 id="--3">텐서플로 기본연산</h3>
+<ul>
+<li>
+<p>기본연산</p>
+<ul>
+<li>tf.add: 덧셈</li>
+<li>tf.subtract: 뺄셈</li>
+<li>tf.multiply: 곱셈</li>
+<li>tf.divide: 나눗셈</li>
+<li>tf.pow: n-제곱</li>
+<li>tf.negative: 음수 부호</li>
+<li>tf.abs: 절대값</li>
+<li>tf.sign: 부호</li>
+<li>tf.round: 반올림</li>
+<li>tf.ceil: 올림</li>
+<li>tf.floor: 내림</li>
+<li>tf.square: 제곱</li>
+<li>tf.sqrt: 제곱근</li>
+<li>tf.maximum: 두 텐서의 각 원소에서 최댓값만 반환.</li>
+<li>tf.minimum: 두 텐서의 각 원소에서 최솟값만 반환.</li>
+<li>tf.cumsum: 누적합</li>
+<li>tf.cumprod: 누적곱</li>
+</ul>
+</li>
+<li>
+<p>차원축소 연산</p>
+<ul>
+<li>tf.reduce_all: 설정한 축으로 이동하면서 and논리 연산을 수행한다.</li>
+<li>tf.reduce_any: 설정한 축으로 이동하면서 or논리 연산을 수행한다.</li>
+<li>tf.reduce_mean: 설정한 축의 평균을 구한다.</li>
+<li>tf.reduce_max: 설정한 축의 최댓값을 구한다.</li>
+<li>tf.reduce_min: 설정한 축의 최솟값을 구한다.</li>
+<li>tf.reduce_prod: 설정한 축의 요소를 모두 곱한 값을 구한다.</li>
+<li>tf.reduce_sum: 설정한 축의 요소를 모두 더한 값을 구한다.</li>
+<li>tf.reduce_logsumexp: 설정한 축의 벡터가 N차원의 벡터 x라고 할 때 \(\mathrm{log}(\sum_{i=0}^{N}\mathrm{exp}x_{i})\)</li>
+</ul>
+</li>
+<li>
+<p>행렬 연산</p>
+<ul>
+<li>tf.matmul: 내적</li>
+<li>tf.linalg.inv: 역행렬</li>
+</ul>
+</li>
+</ul>
+
+</article>
+
+
+
+</html>
