@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<title>모두를 위한 딥러닝-딥러닝의 기본 1. 머신러닝의 개념과 용어 | �ڵ� �ϱ���</title>
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.62.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://kwakkyoleen.github.io/post/ourai1/">
+<link rel="alternate" type="application/rss+xml" href="" title="�ڵ� �ϱ���">
+<link rel="stylesheet" href="https://kwakkyoleen.github.io/css/theme.css">
+<link rel="stylesheet" href="https://kwakkyoleen.github.io/css/classes.css">
+
+<header class="dark">
+  <h2><a href="https://kwakkyoleen.github.io/">�ڵ� �ϱ���</a></h2>
+  <nav>
+    
+  </nav>
+  <script type="text/javascript" async 
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</header>
+
+<article>
+  <header>
+    <h1>모두를 위한 딥러닝-딥러닝의 기본 1. 머신러닝의 개념과 용어</h1>
+    <p><time datetime="2020-01-18T16:12:46&#43;09:00">January 18, 2020</time></p>
+  </header>
+  <h2 id="1-----">1. 기본적인 머신러닝 용어와 개념 설명</h2>
+<h3 id="heading">머신러닝</h3>
+<ul>
+<li>explict program 의 제한을 벗어난 프로그램. 개발자가 정해준 일정한 로직을 따르지 않고 학습한 내용을 토대로 움직이는 프로그램.</li>
+</ul>
+<h3 id="-">머신러닝의 종류</h3>
+<ul>
+<li>supervised learning : training set(레이블들이 정해져 있는 데이터)을 가지고 학습을 하는 방법 - 예시) 개와 고양이를 구분하는 프로그램, 개와 고양이로 레이블이 구분된 자료로 학습</li>
+<li>unsupervied learning : un-labeled data(데이터가 레이블이 주어지지 않은 경우)를 보고 유사한것들을 구분하여 학습하는 방법 - 예시) 구글 뉴스의 그룹화</li>
+<li>이번 강의에서는 supervised learning을 중점으로 볼것임</li>
+</ul>
+<h3 id="ml---">ML에서의 일반적이 문제 유형</h3>
+<ul>
+<li>레이블링된 이미지를 보고 학습</li>
+<li>스펨메일로 구분된, 또는 구분되지 않은 메일을 보고 학습</li>
+<li>시험 준비 시간과 시험 점수가 주어진 데이터를 보고 학습</li>
+</ul>
+<h3 id="training-data-set">training data set</h3>
+<ul>
+<li>답이라고 할 수 있는 Y값과 특징이라고 할 수 있는 X를 가지고 있는 레이블화된 데이터.</li>
+<li>이 데이터를 통해 학습한 모델이 생성</li>
+<li>모델에 임의의 textX를 넣어주었을 때 예측된 값 Y를 출력</li>
+<li>따라서 trainging data set은 반드시 필요하다</li>
+</ul>
+<h3 id="supervised-learning-">supervised learning의 타입</h3>
+<ul>
+<li>regression : 특정한 법위에서 값을 예측 - 예시) 공부 시간에 따른 점수 예측 (0 ~ 100 사이의 값 예측)</li>
+</ul>
+<p>data set 예시</p>
+<table>
+<thead>
+<tr>
+<th align="center">X(시간)</th>
+<th align="center">Y(점수)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">10</td>
+<td align="center">90</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">80</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">50</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">30</td>
+</tr>
+</tbody>
+</table>
+<p>위 데이터 셋을 기반으로 학습하여 학습 시간(X)을 넣으면 점수를 예측</p>
+<ul>
+<li>binary classfication(이진 분류) : True or False 두가지로 구분 - 예시) 공부 시간에 따른 pass or non-pass예측</li>
+</ul>
+<p>data set 예시</p>
+<table>
+<thead>
+<tr>
+<th align="center">X(시간)</th>
+<th align="center">Y(P/F)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">10</td>
+<td align="center">P</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">P</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+<p>위 데이터 셋을 기반으로 학습하여 학습 시간(X)을 넣으면 P/F 예측</p>
+<ul>
+<li>multi-label classification : 여러가지 경우로 구분 - 예시) 공부 시간에 따른 등급예측</li>
+</ul>
+<p>data set 예시</p>
+<table>
+<thead>
+<tr>
+<th align="center">X(시간)</th>
+<th align="center">Y(등급)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">10</td>
+<td align="center">A</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">B</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">D</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+<p>위 데이터 셋을 기반으로 학습하여 학습 시간(X)을 넣으면 등급 예측</p>
+<h2 id="1-l-tenserflow-">1-L. TenserFlow의 기본</h2>
+<h3 id="tenserflow--">TenserFlow에대한 간략한 설명</h3>
+<ul>
+<li>머신러닝을 위해 구글에서 만든 오픈소스 라이브러리</li>
+<li>머신러닝을 위한 라이브러리로 텐서플로우를 가장 많이 씀 -&gt; 공부하기 쉽고 미리 만들어진 소스코드가 풍부함</li>
+<li>data flow graphs를 이용해서 numerical한 계산을 할 수 있음</li>
+</ul>
+<h3 id="data-flow-graph-">Data flow graph가 무엇인가?</h3>
+<ul>
+<li>그래프 : 노드와 노드간을 연결하는 엣지</li>
+<li>노드(operation)들이 엣지(데이터)의 배열(temsors)을 받아 계산을 하는 흐름에서 어떤 연산이 일어나 원하는 결과물을 얻거나 어떤 작업을 하는 것.</li>
+</ul>
+<h3 id="tenser-flow-">Tenser flow 설치하기</h3>
+<ul>
+<li>pip instal &ndash;upgrade tensorflow 로 설치 가능</li>
+<li>gpu가 있다면 pip install &ndash;upgrade tensorflow-gpu</li>
+<li>설치 후 import tensorflow as tf 로 tensorflow import</li>
+<li>tf.<strong>version</strong> 실행. 설치 되었는지 확인</li>
+</ul>
+<h3 id="tensorflow-hello-world">TensorFlow Hello World!</h3>
+<p>다음을 실행</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+
+hello <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">hello, tensorflow!</span><span style="color:#e6db74">&#34;</span>)
+
+sess <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Session()
+
+<span style="color:#66d9ef">print</span>(sess<span style="color:#f92672">.</span>run(hello))
+
+</code></pre></div><p>기존 tensorflow에서는 constant라는 노드를 만들고 Session을 생성시킨 다음 session에 노드를 집어넣어 run 시킴으로써 계산을 진행하였다.</p>
+<p>하지만 tensorflow 2.0 버전에선 Session이 사라지고 즉시 실행으로 바뀌었기 때문에 이 코드로는 출력이 불가능 하다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+
+hello <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">hello, tensorflow!</span><span style="color:#e6db74">&#34;</span>)
+
+<span style="color:#66d9ef">print</span>(hello<span style="color:#f92672">.</span>numpy())
+
+</code></pre></div><p>대신 hello 라는 오퍼레이터를 numpy 속성으로 변환시켜 출력하였다.</p>
+<pre><code>b'hello, tensorflow!' 
+</code></pre><p>라는 출력이 나왔다. 여기에서 b는 Byte literals를 뜻한다.</p>
+<p>노드를 추가한 조금 더 복잡한 코드를 실행시켜보았다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+
+node1 <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(<span style="color:#ae81ff">3.0</span>,tf<span style="color:#f92672">.</span>float32)
+node2 <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(<span style="color:#ae81ff">4.0</span>)
+node3 <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>add(node1, node2)
+
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">node1:</span><span style="color:#e6db74">&#34;</span>,node1,<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">node2</span><span style="color:#e6db74">&#34;</span>,node2)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">node3:</span><span style="color:#e6db74">&#34;</span>,node3)
+
+sess <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Session()
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">sess.run(node1,node2): </span><span style="color:#e6db74">&#34;</span>,sess<span style="color:#f92672">.</span>run([node1, node2]))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">sess.run(node3): </span><span style="color:#e6db74">&#34;</span>, sess<span style="color:#f92672">.</span>run(node3))
+
+</code></pre></div><p>하지만 마찬가지의 이유로 실행이 되지 않기에 위와같은 방법으로 코드를 수정해 실행하였다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+
+node1 <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(<span style="color:#ae81ff">3.0</span>,tf<span style="color:#f92672">.</span>float32) <span style="color:#75715e">#node1을 만들고</span>
+node2 <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>constant(<span style="color:#ae81ff">4.0</span>) <span style="color:#75715e">#node2 도 만든다</span>
+node3 <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>add(node1, node2) <span style="color:#75715e">#더하기 노드를 만들고 node1과 node2를 연결한다</span>
+
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">node1:</span><span style="color:#e6db74">&#34;</span>,node1,<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">node2</span><span style="color:#e6db74">&#34;</span>,node2)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">node3:</span><span style="color:#e6db74">&#34;</span>,node3)
+
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[node1.numpy(), node2.numpy()]: </span><span style="color:#e6db74">&#34;</span>,[node1<span style="color:#f92672">.</span>numpy(),node2<span style="color:#f92672">.</span>numpy()])
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">node3.numpy(): </span><span style="color:#e6db74">&#34;</span>,node3<span style="color:#f92672">.</span>numpy())
+</code></pre></div><p>출력은 다음과 같다</p>
+<pre><code>2020-01-02 03:02:25.929147: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+node1: tf.Tensor(3.0, shape=(), dtype=float32) node2 tf.Tensor(4.0, shape=(), dtype=float32)
+node3: tf.Tensor(7.0, shape=(), dtype=float32)
+[node1.numpy(), node2.numpy()]:  [3.0, 4.0]
+node3.numpy():  7.0
+</code></pre><p>기존의 tensorflow와 달리 Session을 거치지 않고 바로 실행되는 모습을 볼 수 있다.</p>
+<h3 id="placehold">placehold</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">a <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>placeholder(tf<span style="color:#f92672">.</span>float32)
+b <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>placeholder(tf<span style="color:#f92672">.</span>float32)
+adder_node <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> b
+
+<span style="color:#66d9ef">print</span>(sess<span style="color:#f92672">.</span>run(adder_node, feed_dict<span style="color:#f92672">=</span>{a: <span style="color:#ae81ff">3</span>, b: <span style="color:#ae81ff">4.5</span>}))
+<span style="color:#66d9ef">print</span>(sess<span style="color:#f92672">.</span>run(adder_node, feed_dict<span style="color:#f92672">=</span>{a: [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>], b: [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>]}))
+</code></pre></div><p>결과</p>
+<pre><code>7.5
+[3.  7.]
+</code></pre><p>placeholder를 사용하면 sess로 계산을 진행하는 단계에서 feed_dict로 값을 지정해줄 수 있다. 다만 tensorflow 2.0에서는 Session이 사라졌기 때문에 위와 같은 코드는 불가능 하다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a6e22e">@tf.function</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">addfun</span>(a, b):
+    <span style="color:#66d9ef">return</span> a<span style="color:#f92672">+</span>b
+
+adder_node <span style="color:#f92672">=</span> addfun(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4.5</span>)
+
+<span style="color:#66d9ef">print</span>(adder_node)
+</code></pre></div><p>대신 funtion데코레이션이 추가되어 비슷하게 사용할 수 있다.</p>
+<h3 id="-rank-shapes-type">텐서의 rank, shapes, type</h3>
+<ul>
+<li>Rank</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">rank</th>
+<th align="center">math entity</th>
+<th align="center">파이썬 예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0</td>
+<td align="center">Scalar (magnitude only) [스-칼라]</td>
+<td align="center">s = 483</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">Vector (magnitude and direction) [벡-터]</td>
+<td align="center">v = [1.1, 2.2, 3.3]</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">Matrix (table of number) [행렬]</td>
+<td align="center">m = [[1, 2, 3],[4, 5, 6] , [7, 8 ,9]]</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">3-Tensor (cube of number) [3-텐서]</td>
+<td align="center">t = [[[2],[3],[4]],[[5],[6],[7]]]</td>
+</tr>
+<tr>
+<td align="center">n</td>
+<td align="center">n-Tensor [엔-텐서]</td>
+<td align="center">&hellip;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Shape</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">rank</th>
+<th align="center">shape</th>
+<th align="center">차원</th>
+<th align="center">예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0</td>
+<td align="center">[]</td>
+<td align="center">0-D</td>
+<td align="center">A 0-D tensor.A scalar.</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">[D0]</td>
+<td align="center">1-D</td>
+<td align="center">A 1-D tensor with shape[5]</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">[D0, D1]</td>
+<td align="center">2-D</td>
+<td align="center">A 2-D tensor with shape[3, 4]</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">[D0, D1, D2]</td>
+<td align="center">3-D</td>
+<td align="center">A 3-D tensor with shape[1, 4, 3]</td>
+</tr>
+<tr>
+<td align="center">n</td>
+<td align="center">[D0, D1, &hellip;Dn-1]</td>
+<td align="center">n-D</td>
+<td align="center">A 1-D tensor with shape[D0, D1,&hellip;Dn-1]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Data type</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">데이터 타입</th>
+<th align="center">파이썬 타입</th>
+<th align="center">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">DT_FLOAT</td>
+<td align="center">tf.float32</td>
+<td align="center">32비트 실수</td>
+</tr>
+<tr>
+<td align="center">DT_DOUBLE</td>
+<td align="center">tf.float64</td>
+<td align="center">64비트 실수</td>
+</tr>
+<tr>
+<td align="center">DT_INT8</td>
+<td align="center">tf.int8</td>
+<td align="center">8비트 signed정수</td>
+</tr>
+<tr>
+<td align="center">DT_INT16</td>
+<td align="center">tf.int16</td>
+<td align="center">16비트 signed정수</td>
+</tr>
+<tr>
+<td align="center">DT_INT32</td>
+<td align="center">tf.int32</td>
+<td align="center">32비트 signed정수</td>
+</tr>
+<tr>
+<td align="center">DT_INT64</td>
+<td align="center">tf.int64</td>
+<td align="center">64비트 signed정수</td>
+</tr>
+<tr>
+<td align="center">&hellip;</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="--">텐서플로우의 동작 원리</h3>
+<p><img src="/TensorflowMechanics.PNG" alt="TensorflowMechanics"></p>
+<ol start="0">
+<li>텐서플로우 operation을 사용하는 그래프를 만든다.</li>
+<li>데이터를 넣고 그래프를 실행시킨다.</li>
+<li>그래프 안의 변수들을 업데이트 시킨다.(그리고 값을 반환한다.)</li>
+</ol>
+
+</article>
+
+
+
+</html>

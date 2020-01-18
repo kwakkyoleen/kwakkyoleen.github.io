@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<title>모두를 위한 딥러닝-딥러닝의 기본 3. cost의 최소화 | �ڵ� �ϱ���</title>
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.62.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://kwakkyoleen.github.io/post/ourai3/">
+<link rel="alternate" type="application/rss+xml" href="" title="�ڵ� �ϱ���">
+<link rel="stylesheet" href="https://kwakkyoleen.github.io/css/theme.css">
+<link rel="stylesheet" href="https://kwakkyoleen.github.io/css/classes.css">
+
+<header class="dark">
+  <h2><a href="https://kwakkyoleen.github.io/">�ڵ� �ϱ���</a></h2>
+  <nav>
+    
+  </nav>
+  <script type="text/javascript" async 
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</header>
+
+<article>
+  <header>
+    <h1>모두를 위한 딥러닝-딥러닝의 기본 3. cost의 최소화</h1>
+    <p><time datetime="2020-01-18T16:12:59&#43;09:00">January 18, 2020</time></p>
+  </header>
+  <h2 id="3-cost-">3. cost의 최소화</h2>
+<p>cost를 줄이는 방법을 알고 linear regression을 완성시켜보자</p>
+<h3 id="hypothesis-cost-">hypothesis와 cost함수 다시보기</h3>
+<p>\(H(x)=Wx+b\)</p>
+<p>\(cost(W,b)=\frac{1}{m}\sum_{i=1}^{m}(H(x^{(i)})-y^{(i)})^{2}\)</p>
+<p>b = 0인 버전 : \(cost(W,b)=\frac{1}{m}\sum_{i=1}^{m}(Wx^{(i)}-y^{(i)})^{2}\)</p>
+<h3 id="cost--">cost 함수란 무엇일까?</h3>
+<p>트레이닝 데이터</p>
+<table>
+<thead>
+<tr>
+<th align="center">X</th>
+<th align="center">Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>W = 1, cost = \(\frac{1}{m}((1\times 1-1)^{2}+(1\times 2-2)^{2}+(1\times 3-3)^{2})=0\)</li>
+<li>W = 0, cost = \(\frac{1}{m}((0\times 1-1)^{2}+(0\times 2-2)^{2}+(0\times 3-3)^{2})=4.67\)</li>
+<li>W = 2, cost = 4.67</li>
+</ul>
+<p>W값의 변화에 따른 cost그래프
+<img src="/costgraph.PNG" alt="costg"></p>
+<ul>
+<li>목표 : cost가 최소가 되는 W를 찾는 것</li>
+</ul>
+<h3 id="gradient-descent-algorithm---">Gradient descent algorithm (경사 하강 알고리즘)</h3>
+<ul>
+<li>cost를 최소화 하는 함수</li>
+<li>많은 최소화 문제에 사용됨</li>
+<li>cost(W, b)가 주어졌을 때 cost를 최소화 하는 W, b를 찾음</li>
+<li>더 일반적인 함수에도 적용 가능</li>
+</ul>
+<h3 id="----">경사 하강 알고리즘의 동작 방식</h3>
+<ul>
+<li>경사가 있는 방향으로 내려감 -&gt; 언젠가는 바닥에 도착</li>
+<li>cost 함수에 미분을 적용
+<ul>
+<li>변형된 cost 함수 : \(cost(W,b)=\frac{1}{2m}\sum_{i=1}^{m}(Wx^{(i)}-y^{(i)})^{2}\)</li>
+<li>정리 전 :\(W:=W-\alpha \frac{\partial }{\partial W}cost(W)\) - (\(\alpha \) = running rate)</li>
+<li>정리 후 : \(W:=W-\alpha \frac{1}{m}\sum_{i=1}^{m}(Wx^{(i)}-y^{(i)})x^{(i)}\)</li>
+</ul>
+</li>
+</ul>
+<h3 id="convex-function">Convex function</h3>
+<p><img src="/convex.PNG" alt="convex"></p>
+<p>위 그림과 같이 시작점이 어디냐에 따라서 도착점이 달라 질 수가 있음</p>
+<p><img src="/convex2.PNG" alt="convex2"></p>
+<p>하지만 우리가 사용하는 cost함수는 위 그림과 같은 그릇 모양의 Convex function이라 어느 위치에서 시작하든지 항상 바닥에 도착하게 된다. 즉 cost함수를 설계할 때 그 함수가 Convex함수인지 꼭 확인해야 한다.</p>
+<h2 id="3-l-cost--tensorflow-">3-L. cost 최소화의 Tensorflow 구현</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+
+x_train <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+y_train <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+
+W_val <span style="color:#f92672">=</span> []
+cost_val <span style="color:#f92672">=</span> []
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hyp</span>(x_,w_):
+    <span style="color:#66d9ef">return</span> x_<span style="color:#f92672">*</span>w_
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cost</span>(pre_y, des_y):
+    <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>reduce_mean(tf<span style="color:#f92672">.</span>square(pre_y <span style="color:#f92672">-</span> des_y))
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#f92672">-</span><span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">50</span>):
+    W <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(i<span style="color:#f92672">*</span><span style="color:#ae81ff">0.1</span>)
+    curr_hyp <span style="color:#f92672">=</span> hyp(x_train,W)
+    curr_W <span style="color:#f92672">=</span> W<span style="color:#f92672">.</span>numpy()
+    curr_cost <span style="color:#f92672">=</span> cost(curr_hyp,y_train)<span style="color:#f92672">.</span>numpy()
+    W_val<span style="color:#f92672">.</span>append(curr_W)
+    cost_val<span style="color:#f92672">.</span>append(curr_cost)
+    
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">W = </span><span style="color:#e6db74">&#34;</span>,W_val,<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">, cost = </span><span style="color:#e6db74">&#34;</span>,cost_val)
+
+plt<span style="color:#f92672">.</span>plot(W_val,cost_val)
+plt<span style="color:#f92672">.</span>show()
+</code></pre></div><p>W 값 변화에 따른 cost 변화를 보기 위해 위와 같은 코드를 작성했다.</p>
+<p><img src="/wcost.PNG" alt="wcost"></p>
+<p>위 그래프는 앞의 코드의 출력이며 가로축은 W, 세로축은 cost를 나타낸다.</p>
+<h3 id="-">그래프 분석</h3>
+<ul>
+<li>W가 1 이상일 때
+<ul>
+<li>기울기는 양수</li>
+<li>W는 작아져야 함</li>
+</ul>
+</li>
+<li>W가 1 이하일 때
+<ul>
+<li>기울기는 음수</li>
+<li>W는 커져야 함</li>
+</ul>
+</li>
+<li>따라서 산술적 계산을 적용하면 W에 기울기를 정리한 값을 빼주면 올바른 결과가 나온다는 결론이 나온다.
+<ul>
+<li>\(W:=W-\alpha \frac{1}{m}\sum_{i=1}^{m}(Wx^{(i)}-y^{(i)})x^{(i)}\)</li>
+</ul>
+</li>
+</ul>
+<p>이를 Tensorflow 코드에 적용하면</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learning_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>
+gradient <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>reduce_mean((W<span style="color:#f92672">*</span>X<span style="color:#f92672">-</span>Y)<span style="color:#f92672">*</span>X)
+W <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>subtract(W, learning_rate<span style="color:#f92672">*</span>gradient)
+</code></pre></div><p>그리고 이 내용을 앞선 코드에 적용하여 코드를 다시 짜보면</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+
+x_train <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+y_train <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+
+W <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(tf<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(shape<span style="color:#f92672">=</span>[<span style="color:#ae81ff">1</span>]),name <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">weight</span><span style="color:#e6db74">&#39;</span>)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hyp</span>(x_,w_):
+    <span style="color:#66d9ef">return</span> x_<span style="color:#f92672">*</span>w_
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cost</span>(pre_y, des_y):
+    <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>reduce_sum(tf<span style="color:#f92672">.</span>square(pre_y <span style="color:#f92672">-</span> des_y))
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">25</span>):
+    learning_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>
+    gradient <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>reduce_mean((W<span style="color:#f92672">*</span>x_train<span style="color:#f92672">-</span>y_train)<span style="color:#f92672">*</span>x_train)
+    W <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>subtract(W, learning_rate<span style="color:#f92672">*</span>gradient)
+    <span style="color:#66d9ef">print</span>(cost(hyp(x_train,W),y_train)<span style="color:#f92672">.</span>numpy(),W<span style="color:#f92672">.</span>numpy())
+</code></pre></div><p>출력</p>
+<pre><code># cost          W
+0.53011817 [0.8054092]
+0.15078919 [0.89621824]
+0.04289107 [0.94464976]
+0.012200174 [0.97047985]
+0.0034702579 [0.9842559]
+0.0009871025 [0.99160314]
+0.00028077362 [0.99552166]
+7.986753e-05 [0.9976115]
+2.2718443e-05 [0.9987261]
+6.4611954e-06 [0.9993206]
+1.8379001e-06 [0.99963766]
+5.2291256e-07 [0.99980676]
+1.4872565e-07 [0.99989694]
+4.2320792e-08 [0.99994504]
+1.2039777e-08 [0.9999707]
+3.4030592e-09 [0.9999844]
+9.748646e-10 [0.99999166]
+2.7818103e-10 [0.9999955]
+7.9580786e-11 [0.9999976]
+2.2385649e-11 [0.99999875]
+5.7873706e-12 [0.99999934]
+1.5489832e-12 [0.99999964]
+3.872458e-13 [0.9999998]
+2.9842795e-13 [0.9999999]
+7.460699e-14 [0.99999994]
+</code></pre><p>W가 점점 특정 값에 가까워짐에 따라 cost가 0에 수렴함을 알 수 있다.</p>
+<p>물론 이 코드를 매 실행마다 쓸 수는 없기에 Tensorflow에서는 다음과 같은 코드를 제공한다</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">varia <span style="color:#f92672">=</span> [W, b]
+
+<span style="color:#75715e"># ...</span>
+
+optimizer <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>SGD(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.01</span>) <span style="color:#75715e"># 학습 방법과 학습률을 정하고</span>
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hyp</span>(x_,w_,b_):
+    <span style="color:#66d9ef">return</span> x_<span style="color:#f92672">*</span>w_<span style="color:#f92672">+</span>b_
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cost</span>(pre_y, des_y):
+    <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>reduce_mean(tf<span style="color:#f92672">.</span>square(pre_y <span style="color:#f92672">-</span> des_y))
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10000</span>):
+    <span style="color:#66d9ef">with</span> tf<span style="color:#f92672">.</span>GradientTape() <span style="color:#66d9ef">as</span> t:
+        current_cost <span style="color:#f92672">=</span> cost(hyp(x_train,W,b),y_train) <span style="color:#75715e"># 현재 cost를 정의한 뒤</span>
+    grads <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>gradient(current_cost,varia) <span style="color:#75715e"># 기울기를 알아내고</span>
+    optimizer<span style="color:#f92672">.</span>apply_gradients(zip(grads, varia)) <span style="color:#75715e"># 기울기와 학습률을 적용시켜 변수를 수정한다.</span>
+
+</code></pre></div><p>이 코드를 적용시켜 weight를 5로하여 코드를 수정하면</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x_train <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+y_train <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+
+W <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>Variable(<span style="color:#ae81ff">5.0</span> ,name <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">weight</span><span style="color:#e6db74">&#39;</span>)
+varia <span style="color:#f92672">=</span> [W]
+
+optimizer <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>optimizers<span style="color:#f92672">.</span>SGD(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.02</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hyp</span>(x_,w_):
+    <span style="color:#66d9ef">return</span> x_<span style="color:#f92672">*</span>w_
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cost</span>(pre_y, des_y):
+    <span style="color:#66d9ef">return</span> tf<span style="color:#f92672">.</span>math<span style="color:#f92672">.</span>reduce_sum(tf<span style="color:#f92672">.</span>square(pre_y <span style="color:#f92672">-</span> des_y))
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
+    <span style="color:#66d9ef">with</span> tf<span style="color:#f92672">.</span>GradientTape() <span style="color:#66d9ef">as</span> t:
+        current_cost <span style="color:#f92672">=</span> cost(hyp(x_train,W),y_train)   
+    grads <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>gradient(current_cost,varia)
+    optimizer<span style="color:#f92672">.</span>apply_gradients(zip(grads, varia))
+    <span style="color:#66d9ef">print</span>(cost(hyp(x_train,W),y_train)<span style="color:#f92672">.</span>numpy(),W<span style="color:#f92672">.</span>numpy())
+</code></pre></div><p>결과</p>
+<pre><code># cost       W
+43.366398 2.76
+8.395736 1.7744
+1.6254148 1.340736
+0.31468004 1.1499238
+0.060922034 1.0659665
+0.011794565 1.0290253
+0.0022834246 1.0127711
+0.0004420695 1.0056193
+8.5588734e-05 1.0024725
+1.6569491e-05 1.0010879
+</code></pre><p>잘나온다.</p>
+
+</article>
+
+
+
+</html>

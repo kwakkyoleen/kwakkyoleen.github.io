@@ -1,23 +1,59 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
+    <title>�ڵ� �ϱ���</title>
     <link>https://kwakkyoleen.github.io/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <description>Recent content on �ڵ� �ϱ���</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Jan 2020 23:20:11 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 18 Jan 2020 16:14:52 +0900</lastBuildDate>
     
 	<atom:link href="https://kwakkyoleen.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>AI_모두를위한딥러닝_1</title>
-      <link>https://kwakkyoleen.github.io/post/aiourdeep/</link>
-      <pubDate>Wed, 01 Jan 2020 23:20:11 +0900</pubDate>
+      <title>모두를 위한 딥러닝-딥러닝의 기본 4. multi-variable linear regression</title>
+      <link>https://kwakkyoleen.github.io/post/ourai4/</link>
+      <pubDate>Sat, 18 Jan 2020 16:14:52 +0900</pubDate>
       
-      <guid>https://kwakkyoleen.github.io/post/aiourdeep/</guid>
-      <description>모두를 위한 딥러닝 1강 1. 기본적인 머신러닝 용어와 개념 설명 머신러닝  explict program 의 제한을 벗어난 프로그램. 개발자가 정해준 일정한 로직을 따르지 않고 학습한 내용을 토대로 움직이는 프로그램.  머신러닝의 종류  supervised learning : training set(레이블들이 정해져 있는 데이터)을 가지고 학습을 하는 방법 - 예시) 개와 고양이를 구분하는 프로그램, 개와 고양이로 레이블이 구분된 자료로 학습 unsupervied learning : un-labeled data(데이터가 레이블이 주어지지 않은 경우)를 보고 유사한것들을 구분하여 학습하는 방법 - 예시) 구글 뉴스의 그룹화 이번 강의에서는 supervised learning을 중점으로 볼것임  ML에서의 일반적이 문제 유형  레이블링된 이미지를 보고 학습 스펨메일로 구분된, 또는 구분되지 않은 메일을 보고 학습 시험 준비 시간과 시험 점수가 주어진 데이터를 보고 학습  training data set  답이라고 할 수 있는 Y값과 특징이라고 할 수 있는 X를 가지고 있는 레이블화된 데이터.</description>
+      <guid>https://kwakkyoleen.github.io/post/ourai4/</guid>
+      <description>4. Multivariable linear regression (변수가 여러개인 선형 회귀)  필요성 : input이 여러개인 경우     X1(quiz 1) X2(quiz 2) X3(midterm) Y(final)     73 80 75 152   93 88 93 185   89 91 90 180   96 98 100 196   73 66 70 142    예시) 퀴즈, 중간고사 점수를 입력으로 기말고사 점수 예측
+Hypothesis  \(H(x)=Wx+b\) \(H(x_{1},x_{2},x_{3})=w_{1}x_{1}+w_{2}x_{2}+w_{3}x_{3}+b\)  행렬표시  \(H(X)=WX\) shape : [n,m]*[m,k] = [n,k]  4-L.</description>
+    </item>
+    
+    <item>
+      <title>모두를 위한 딥러닝-딥러닝의 기본 3. cost의 최소화</title>
+      <link>https://kwakkyoleen.github.io/post/ourai3/</link>
+      <pubDate>Sat, 18 Jan 2020 16:12:59 +0900</pubDate>
+      
+      <guid>https://kwakkyoleen.github.io/post/ourai3/</guid>
+      <description>3. cost의 최소화 cost를 줄이는 방법을 알고 linear regression을 완성시켜보자
+hypothesis와 cost함수 다시보기 \(H(x)=Wx+b\)
+\(cost(W,b)=\frac{1}{m}\sum_{i=1}^{m}(H(x^{(i)})-y^{(i)})^{2}\)
+b = 0인 버전 : \(cost(W,b)=\frac{1}{m}\sum_{i=1}^{m}(Wx^{(i)}-y^{(i)})^{2}\)
+cost 함수란 무엇일까? 트레이닝 데이터
+   X Y     1 1   2 2   3 3     W = 1, cost = \(\frac{1}{m}((1\times 1-1)^{2}+(1\times 2-2)^{2}+(1\times 3-3)^{2})=0\) W = 0, cost = \(\frac{1}{m}((0\times 1-1)^{2}+(0\times 2-2)^{2}+(0\times 3-3)^{2})=4.67\) W = 2, cost = 4.</description>
+    </item>
+    
+    <item>
+      <title>모두를 위한 딥러닝-딥러닝의 기본 2. Linear Regression (선형 회귀)</title>
+      <link>https://kwakkyoleen.github.io/post/ourai2/</link>
+      <pubDate>Sat, 18 Jan 2020 16:12:51 +0900</pubDate>
+      
+      <guid>https://kwakkyoleen.github.io/post/ourai2/</guid>
+      <description>2. Linear Regression (선형 회귀) 앤드류 교수님 수업이랑 겹치는 부분이 많다.
+시험 점수 예측 : regression data set 예시
+   X(시간) Y(점수)     10 90   9 80   3 50   2 30     100~0 사이의 범위에서 예측(regression) 트레이닝 : (트레이닝)데이터를 가지고 훈련하는 것 -&amp;gt; regression 모델 생성  간단한 예시 (트레이닝 데이터)
+   X Y     1 1   2 2   3 3    트레이닝 데이터를 간단하게 나타낸 그래프</description>
+    </item>
+    
+    <item>
+      <title>모두를 위한 딥러닝-딥러닝의 기본 1. 머신러닝의 개념과 용어</title>
+      <link>https://kwakkyoleen.github.io/post/ourai1/</link>
+      <pubDate>Sat, 18 Jan 2020 16:12:46 +0900</pubDate>
+      
+      <guid>https://kwakkyoleen.github.io/post/ourai1/</guid>
+      <description>1. 기본적인 머신러닝 용어와 개념 설명 머신러닝  explict program 의 제한을 벗어난 프로그램. 개발자가 정해준 일정한 로직을 따르지 않고 학습한 내용을 토대로 움직이는 프로그램.  머신러닝의 종류  supervised learning : training set(레이블들이 정해져 있는 데이터)을 가지고 학습을 하는 방법 - 예시) 개와 고양이를 구분하는 프로그램, 개와 고양이로 레이블이 구분된 자료로 학습 unsupervied learning : un-labeled data(데이터가 레이블이 주어지지 않은 경우)를 보고 유사한것들을 구분하여 학습하는 방법 - 예시) 구글 뉴스의 그룹화 이번 강의에서는 supervised learning을 중점으로 볼것임  ML에서의 일반적이 문제 유형  레이블링된 이미지를 보고 학습 스펨메일로 구분된, 또는 구분되지 않은 메일을 보고 학습 시험 준비 시간과 시험 점수가 주어진 데이터를 보고 학습  training data set  답이라고 할 수 있는 Y값과 특징이라고 할 수 있는 X를 가지고 있는 레이블화된 데이터.</description>
     </item>
     
     <item>
