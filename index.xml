@@ -6,10 +6,28 @@
     <description>Recent content on �ڵ� �ϱ���</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Jan 2020 01:39:59 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 25 Jan 2020 02:29:49 +0900</lastBuildDate>
     
 	<atom:link href="https://kwakkyoleen.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>모두를 위한 딥러닝-딥러닝의 기본 8. 딥러닝의 기본 개념</title>
+      <link>https://kwakkyoleen.github.io/post/ourai8/</link>
+      <pubDate>Sat, 25 Jan 2020 02:29:49 +0900</pubDate>
+      
+      <guid>https://kwakkyoleen.github.io/post/ourai8/</guid>
+      <description>8-1. 시작과 XOR 문제 최종 목적지 : 생각하는 기계  뉴런의 구조 : 인풋 -&amp;gt; 계산 -&amp;gt; 아웃풋 -&amp;gt; 다음 뉴런에 전달 -&amp;gt; 반복 &amp;hellip; =&amp;gt; 기계적으로 구현 가능? Activation Function : 위의 뉴런 구조를 수식화 한 것 (\(\sum_{i} w_{i}x_{i}+b\)) 실제로 위 수식을 바탕으로 계산을 하는 기계장치를 만들었다. 이를 바탕으로 이 기계의 계발자는 이 기계가 스스로 학습해서 걷고, 말하고, 글을 쓰고, 자기 생산 및 자기 인식을 하게 될 것이다라고 말함. =&amp;gt; 많은 사람들의 관심을 끌음 그 당시에는 and, or 같은 로직을 풀면 위 예시가 가능할 것이라고 생각함  and/or 문제 : 선형 분류일까?</description>
+    </item>
+    
+    <item>
+      <title>모두를 위한 딥러닝-딥러닝의 기본 7. 머신러닝의 실용과 팁</title>
+      <link>https://kwakkyoleen.github.io/post/ourai7/</link>
+      <pubDate>Sat, 25 Jan 2020 02:29:41 +0900</pubDate>
+      
+      <guid>https://kwakkyoleen.github.io/post/ourai7/</guid>
+      <description>7-1. 학습 rate, Overfitting, 그리고 일반화 running rate \(\alpha\)  적절한 값을 정해주는 것이 중요 만약 값이 너무 크다면 값이 발산함 (overshooting) 만약 값이 너무 작다면 학습이 느리게 이루어짐  x의 선처리(nomalization)  x 요소 사이에 값에 큰 차이가 있을 경우 학습이 제대로 이루어지지 않음 standardization : \(x_{j}`=\frac{x_{j}-\mu_{j}}{\sigma _{j}}\) (뮤 : 평균 / 시그마 : 분산)  overfitting  학습 데이터에만 너무 딱맞는 모델이 만들어지는 현상 학습 데이터에는 잘 맞지만 실제 데이터나 테스트 데이터에는 잘 맞지 않음  overfitting의 해결법  학습 데이터를 더 많이 준비 중복된 특징의 갯수를 줄임 일반화 시킴 (너무 큰 가중치를 쓰지 않음)  일반화 방법  loss의 수정  \(L=\frac{1}{N}\sum_{i}D(S(wx_{i}+b),L_{i})+\lambda\sum W^{2}\)</description>
+    </item>
     
     <item>
       <title>모두를 위한 딥러닝-딥러닝의 기본 5. Logistic Classification</title>

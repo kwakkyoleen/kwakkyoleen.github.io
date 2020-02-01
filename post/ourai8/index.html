@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<title>모두를 위한 딥러닝-딥러닝의 기본 8. 딥러닝의 기본 개념 | �ڵ� �ϱ���</title>
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.62.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://kwakkyoleen.github.io/post/ourai8/">
+<link rel="alternate" type="application/rss+xml" href="" title="�ڵ� �ϱ���">
+<link rel="stylesheet" href="https://kwakkyoleen.github.io/css/theme.css">
+<link rel="stylesheet" href="https://kwakkyoleen.github.io/css/classes.css">
+
+<header class="dark">
+  <h2><a href="https://kwakkyoleen.github.io/">�ڵ� �ϱ���</a></h2>
+  <nav>
+    
+  </nav>
+  <script type="text/javascript" async 
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</header>
+
+<article>
+  <header>
+    <h1>모두를 위한 딥러닝-딥러닝의 기본 8. 딥러닝의 기본 개념</h1>
+    <p><time datetime="2020-01-25T02:29:49&#43;09:00">January 25, 2020</time></p>
+  </header>
+  <h2 id="8-1--xor-">8-1. 시작과 XOR 문제</h2>
+<h3 id="----">최종 목적지 : 생각하는 기계</h3>
+<ul>
+<li>뉴런의 구조 : 인풋 -&gt; 계산 -&gt; 아웃풋 -&gt; 다음 뉴런에 전달 -&gt; 반복 &hellip; =&gt; 기계적으로 구현 가능?</li>
+<li>Activation Function : 위의 뉴런 구조를 수식화 한 것 (\(\sum_{i} w_{i}x_{i}+b\))</li>
+<li>실제로 위 수식을 바탕으로 계산을 하는 기계장치를 만들었다.</li>
+<li>이를 바탕으로 이 기계의 계발자는 이 기계가 스스로 학습해서 걷고, 말하고, 글을 쓰고, 자기 생산 및 자기 인식을 하게 될 것이다라고 말함. =&gt; 많은 사람들의 관심을 끌음</li>
+<li>그 당시에는 and, or 같은 로직을 풀면 위 예시가 가능할 것이라고 생각함</li>
+</ul>
+<h3 id="andor----">and/or 문제 : 선형 분류일까?</h3>
+<p><img src="/andor.PNG" alt="알수없음"></p>
+<ul>
+<li>위 문제 모두 인풋(x1, x2)이 주어질때 값을 예측할 수 있음</li>
+</ul>
+<h3 id="xor----">xor 문제 : 선형 분류일까?</h3>
+<p><img src="/xor.PNG" alt="알수없음"></p>
+<ul>
+<li>하지만 xor 같은 경우 선 하나만으로는 예측이 불가능</li>
+<li>후에 Marvin Minsky 교수가 여러개의 퍼셉트론을 사용하면 해결 가능하지만 아무도 퍼셉트론 안의 w와 b를 학습시킬 수 없다고 주장함 (첫번째 침체기) =&gt; 1982년 오류역전파 알고리즘으로 해결됨</li>
+<li>위 알고리즘과 별개로 LeCun 교수가 여러개로 나누어 계산하고 나중에 합치는 방법인 Convolutional Neural Networks 라는 알고리즘을 개발함</li>
+</ul>
+<h3 id="---big-problem">새로운 문제 : BIG problem</h3>
+<ul>
+<li>하지만 위의 알고리즘들로는 레이어가 더 많은 매우 큰 구조를 학습하는데 있어서 한계를 보임</li>
+<li>위 같은 상황에서는 다른 더 간단한 알고리즘들이 더 큰 효율성을 보임</li>
+<li>2번째 침체기를 맞이함 =&gt; 훗날 CIFAR라는 단체에 의해 3번째 부흥기를 맞이</li>
+</ul>
+
+</article>
+
+
+
+</html>
