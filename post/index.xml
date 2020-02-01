@@ -6,10 +6,22 @@
     <description>Recent content in Posts on �ڵ� �ϱ���</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Jan 2020 16:14:52 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 25 Jan 2020 01:39:59 +0900</lastBuildDate>
     
 	<atom:link href="https://kwakkyoleen.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>모두를 위한 딥러닝-딥러닝의 기본 5. Logistic Classification</title>
+      <link>https://kwakkyoleen.github.io/post/ourai5/</link>
+      <pubDate>Sat, 25 Jan 2020 01:39:59 +0900</pubDate>
+      
+      <guid>https://kwakkyoleen.github.io/post/ourai5/</guid>
+      <description>5-1. Logistic Classification의 가설 함수 정의 회귀  cost : \(cost(W)=\frac{1}{m} \sum(WX-y)^2\) 경사 하강 : \(W_{n+1}=W_{n}-\alpha\frac{\partial}{\partial W_{n}}cost(W_{n})\) 결국 cost값이 가장 작은수로 하강하게됨  분류  둘 중 하나 정해진 카테고리를 고름 예시  주식이 오를까 내릴까 던질까 말까 학생의 점수가 오를까 안오를까    기존 hypothesis의 문제점 \(H(x)=Wx+b\)
+=&amp;gt;
+ H의 값이 한정되어있지 않음 이진 분류를 위해서는 H의 값이 0~1 사이의 값을 가져야 함  sigmoid \(g(z)=\frac{1}{(1+e^{-z})}\)
+=&amp;gt; z값을 변환시켜 0~1 사이의 값으로 만듦</description>
+    </item>
     
     <item>
       <title>모두를 위한 딥러닝-딥러닝의 기본 4. multi-variable linear regression</title>
