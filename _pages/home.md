@@ -5,15 +5,18 @@ sitemap: false
 permalink: /
 ---
 
-### Welcome!
+### About Me
 
-Theoretical physics is a branch of physics that focuses on the development of mathematical models and theories to understand and explain natural phenomena.
-It plays a crucial role in our understanding of the fundamental laws of the universe and the fundamental particles that make up all matter.
-Research in theoretical physics helps us to make predictions about how the universe works and to test these predictions through experiments.
-It also helps us to understand the fundamental principles that govern the behavior of matter and energy, and to explore the limits of our current knowledge.
-Theoretical physics helps us to make progress in a wide range of fields, including cosmology, particle physics, and quantum mechanics, and it has led to many important discoveries and technological innovations.
+I am a graduate student in the Department of Artificial Intelligence at **Kyung Hee University**, where I am pursuing my M.Sc. under the supervision of **Prof. Hyo Seok Hwang** in the **AIRLab**. 
 
-<div class="container">
+I graduated from Kyung Hee University in 2024 with a Bachelor's degree in Computer Science, and my current research focuses on **reinforcement learning** and its applications in **robot control**. 
+
+My primary interest lies in developing intelligent algorithms that enable robots to perform complex tasks in dynamic environments. I am particularly fascinated by the intersection of AI and robotics, where theoretical advancements meet practical implementations. Through my research, I aim to contribute to the field of autonomous systems and their integration into real-world applications.
+
+In addition to my academic pursuits, I enjoy collaborating on innovative projects and engaging in discussions about the future of artificial intelligence and robotics.
+
+
+<!-- <div class="container">
 <div class="row">
 <center>
 <img src="{{ site.url }}{{ site.baseurl }}/images/banner.jpg" width="100%"/><br/>
@@ -22,11 +25,4 @@ Feynman R., The theory of positrons. <i>Phys. Rev.</i> (1949)
 </center>
 </div>
 </div>
-<br/>
-
-### About me
-
-I am a physicist working in the field of quantum mechanics and quantum electrodynamics.
-I received my undergraduate degree in physics from the Massachusetts Institute of Technology (MIT) in 1939 and went on to earn my PhD from Princeton University in 1942.
-After completing my doctoral studies, I worked on the Manhattan Project, where I helped develop the first atomic bombs.
-After the war, I returned to academia, holding teaching and research positions at Cornell and now at the California Institute of Technology.
+<br/> -->
